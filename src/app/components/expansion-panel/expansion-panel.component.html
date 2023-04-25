@@ -1,0 +1,17 @@
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon *ngIf="type === 'favorites'" class="icon">favorite</mat-icon>
+      {{panelOpenState ? 'Hide' : 'Show'}} {{type}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <p *ngFor="let item of list; let i=index" class="item">
+    <span (click)="getFavorite()"><span *ngIf="type==='ingredients'">{{(i+1)+"- "}}</span> {{item}}</span>
+    <button mat-icon-button *ngIf="type === 'favorites'" class="delete" (click)="removeFavorite(item)">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+  </p>
+  <p *ngIf="list.length<1 && type==='favorites'">You haven't saved meals yet</p>
+</mat-expansion-panel>

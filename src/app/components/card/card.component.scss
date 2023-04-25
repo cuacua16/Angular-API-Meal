@@ -1,0 +1,30 @@
+.example-card {
+  max-width: 440px;
+  padding: 5px 25px;
+  gap: 20px;
+  background-color: #212121;
+  box-shadow: #212121 2px 2px 12px;
+  color: #eee;
+}
+
+.imageMeal {
+  height: 280px;
+  border-radius: 1%;
+}
+.card-header {
+  justify-content: space-between;
+}
+.youtube {
+  justify-self: end;
+  color: #ff0000;
+}
+.read-more {
+  color: rgb(91, 91, 202);
+  cursor: pointer;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

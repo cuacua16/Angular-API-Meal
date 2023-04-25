@@ -1,0 +1,26 @@
+<mat-card color="danger" class="example-card" *ngIf="meal.idMeal">
+  <mat-card-header class="card-header">
+    <mat-card-title>{{meal.strMeal}}</mat-card-title>
+    <mat-card-subtitle>{{meal.strArea}}</mat-card-subtitle>
+    <a href={{meal.strYoutube}} target="_blank" class="youtube"
+      title="Ver en YouTube"><mat-icon>video_library</mat-icon></a>
+  </mat-card-header>
+  <img mat-card-image src={{meal.strMealThumb}} alt="" class="imageMeal">
+  <mat-card-content>
+    <h3>Instructions: </h3>
+    <p *ngIf="!showInstructions">{{meal.strInstructions | limitText:140}} <span class="read-more"
+        (click)="onToggleInstructions()"> Read more...</span>
+    </p>
+    <p *ngIf="showInstructions">{{meal.strInstructions}}<span class="read-more" (click)="onToggleInstructions()"> Show
+        less...</span>
+    </p>
+
+    <app-expansion-panel [list]="meal.strIngredients" type="ingredients"></app-expansion-panel>
+
+  </mat-card-content>
+  <mat-card-actions class="button-container">
+    <a href={{meal.strSource}} target="_blank">{{meal.strSource |
+      limitText:25}}</a>
+    <button mat-raised-button color="warn" (click)="onSave()">Save <mat-icon>favorite</mat-icon></button>
+  </mat-card-actions>
+</mat-card>
