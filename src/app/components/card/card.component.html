@@ -21,6 +21,8 @@
   <mat-card-actions class="button-container">
     <a href={{meal.strSource}} target="_blank">{{meal.strSource |
       limitText:25}}</a>
-    <button mat-raised-button color="warn" (click)="onSave()">Save <mat-icon>favorite</mat-icon></button>
+    <button mat-raised-button color="warn" (click)="onSave()" [disabled]="isFavorite(meal.idMeal)">
+      {{isFavorite(meal.idMeal) ? 'Saved' : 'Save'}}
+      <mat-icon>favorite</mat-icon></button>
   </mat-card-actions>
 </mat-card>
