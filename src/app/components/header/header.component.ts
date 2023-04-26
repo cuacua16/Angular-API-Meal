@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UserService } from 'src/app/services/user.service';
 
@@ -8,18 +8,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  favorites: string[] = [];
+  @Input('favorites') favorites: string[] = [];
+  @Output() getFavorite = new EventEmitter();
 
-  constructor(private userService: UserService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.getFavorites();
+  get(strMeal: string) {
+    this.getFavorite.emit(strMeal);
   }
-  getFavorites() {
-    this.userService
-      .getFavorites()
-      .forEach((e) => this.favorites.push(e.strMeal));
-  }
-
-  getFavorite() {}
 }

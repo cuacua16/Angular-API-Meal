@@ -1,4 +1,10 @@
-import { Component, Input, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,10 +16,13 @@ export class ExpansionPanelComponent {
   @Input('list') list: string[] = [];
   @Input('type') type: string = '';
   panelOpenState = false;
+  @Output() getFavorite = new EventEmitter();
 
   constructor(private userService: UserService) {}
 
-  getFavorite() {}
+  get(strMeal: string) {
+    this.getFavorite.emit(strMeal);
+  }
   removeFavorite(strMeal: string) {
     let item = this.userService
       .getFavorites()

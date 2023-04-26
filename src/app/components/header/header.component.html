@@ -1,8 +1,6 @@
 <mat-toolbar class="header">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>My App</span>
+  <a href="https://www.themealdb.com/" target="_blank"><span>Meal API</span></a>
   <span class="example-spacer"></span>
-  <app-expansion-panel class="favorites" [list]="favorites" type="favorites"></app-expansion-panel>
+  <app-expansion-panel class="favorites" [list]="favorites" type="favorites"
+    (getFavorite)="get($event)"></app-expansion-panel>
 </mat-toolbar>

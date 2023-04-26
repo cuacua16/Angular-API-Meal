@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header [favorites]="favorites" (getFavorite)="getFavorite($event)"></app-header>
 <div class="container">
   <div class="container-arrow" title="Previous Meal">
     <mat-icon class="arrow" *ngIf="previousMeals.length" (click)="getMealById()">keyboard_arrow_left</mat-icon>

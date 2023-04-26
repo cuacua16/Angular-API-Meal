@@ -16,4 +16,10 @@ export class MealService {
       `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
     );
   }
+
+  getMealByName(name: string) {
+    return this.http.get(
+      `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`
+    );
+  }
 }

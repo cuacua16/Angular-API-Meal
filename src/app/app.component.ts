@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Meal } from './interfaces/meal';
 import { MealService } from './services/meal.service';
 import { UserService } from './services/user.service';
@@ -17,6 +16,7 @@ export class AppComponent {
   };
   isLoading = false;
   previousMeals: string[] = [];
+  favorites: string[] = [];
 
   constructor(
     private mealService: MealService,
@@ -25,6 +25,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.getRandomMeal();
+    this.getFavorites();
   }
 
   getRandomMeal() {
@@ -54,7 +55,27 @@ export class AppComponent {
       });
   }
 
+  getFavorites() {
+    this.favorites = [];
+    this.userService
+      .getFavorites()
+      .forEach((e) => this.favorites.push(e.strMeal));
+  }
+
+  getFavorite(strMeal: string) {
+    this.isLoading = true;
+    this.mealService.getMealByName(strMeal).subscribe((d: any) => {
+      this.meal = { ...this.meal, ...d.meals[0], strIngredients: [] };
+      for (let i = 1; i <= 20; i++) {
+        let ingredient = d.meals[0][`strIngredient${i}`].trim();
+        if (ingredient) this.meal.strIngredients.push(ingredient);
+      }
+      this.isLoading = false;
+    });
+  }
+
   save() {
     this.userService.saveFavorite(this.meal);
+    this.getFavorites();
   }
 }

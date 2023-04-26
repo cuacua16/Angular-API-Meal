@@ -7,7 +7,7 @@
   </mat-expansion-panel-header>
 
   <p *ngFor="let item of list; let i=index" class="item">
-    <span (click)="getFavorite()"><span *ngIf="type==='ingredients'">{{(i+1)+"- "}}</span> {{item}}</span>
+    <span (click)="get(item)"><span *ngIf="type==='ingredients'">{{(i+1)+"- "}}</span> {{item}}</span>
     <button mat-icon-button *ngIf="type === 'favorites'" class="delete" (click)="removeFavorite(item)">
       <mat-icon>delete</mat-icon>
     </button>
